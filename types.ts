@@ -33,4 +33,5 @@ export interface GeneratedContent {
   keyConcepts: string[];
   roleSpecificInsight: string;
   certificationCriteria: string[]; // Reused as "Operational Deliverables"
+  contentBody: string; // Full essay content
 }

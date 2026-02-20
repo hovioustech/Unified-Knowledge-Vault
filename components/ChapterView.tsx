@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Domain, Chapter, PartnerType, GeneratedContent } from '../types';
-import { generateChapterContent } from '../services/geminiService';
+import { generateChapterContent } from '../services/offlineContentService';
 import { Loader2, ArrowLeft, Award, BookOpen, AlertCircle, Sparkles, CheckCircle2, Circle, Briefcase, FileText } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 interface ChapterViewProps {
   domain: Domain;
@@ -97,6 +98,16 @@ const ChapterView: React.FC<ChapterViewProps> = ({ domain, chapter, partnerRole,
               <p className="text-slate-600 leading-relaxed text-lg">
                 {content.overview}
               </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-vault-border shadow-sm">
+              <h3 className="text-xl font-bold text-vault-text mb-4 flex items-center">
+                <BookOpen className="w-5 h-5 mr-2 text-indigo-600" />
+                Core Curriculum: Deep Dive
+              </h3>
+              <div className="prose prose-slate max-w-none prose-headings:font-serif prose-headings:font-bold prose-a:text-vault-accent">
+                <ReactMarkdown>{content.contentBody}</ReactMarkdown>
+              </div>
             </div>
 
             <div className="bg-white p-8 rounded-2xl border border-vault-border shadow-sm">

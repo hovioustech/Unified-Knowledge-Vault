@@ -5,7 +5,7 @@ import RoleSelector from './components/RoleSelector';
 import TrackCard from './components/DomainCard'; // Reusing as TrackCard
 import ChapterView from './components/ChapterView';
 import { MessageSquare, LayoutGrid, Search, Bell, ArrowRight, ChevronRight, Home, CheckCircle2, Circle, Layers, RefreshCw, ShieldCheck, Binary, FileBadge, Waypoints, AlertTriangle, TrendingUp, Lock, BarChart3, Presentation, Settings2, Database, XCircle, Target, Map, Coins, Globe, Building, ArrowUpRight, Scale, Users, Activity, BookOpen, ChevronLeft, TreeDeciduous } from 'lucide-react';
-import { chatWithVault } from './services/geminiService';
+import { chatWithVault } from './services/offlineContentService';
 
 enum ViewState {
   TRACK_LIST,
