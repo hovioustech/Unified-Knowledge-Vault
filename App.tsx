@@ -4,7 +4,8 @@ import { Domain, PartnerType, Chapter, Track } from './types';
 import RoleSelector from './components/RoleSelector';
 import TrackCard from './components/DomainCard'; // Reusing as TrackCard
 import ChapterView from './components/ChapterView';
-import { MessageSquare, LayoutGrid, Search, Bell, ArrowRight, ChevronRight, Home, CheckCircle2, Circle, Layers, RefreshCw, ShieldCheck, Binary, FileBadge, Waypoints, AlertTriangle, TrendingUp, Lock, BarChart3, Presentation, Settings2, Database, XCircle, Target, Map, Coins, Globe, Building, ArrowUpRight, Scale, Users, Activity, BookOpen, ChevronLeft, TreeDeciduous } from 'lucide-react';
+import LicensingModule from './components/LicensingModule';
+import { MessageSquare, LayoutGrid, Search, Bell, ArrowRight, ChevronRight, Home, CheckCircle2, Circle, Layers, RefreshCw, ShieldCheck, Binary, FileBadge, Waypoints, AlertTriangle, TrendingUp, Lock, BarChart3, Presentation, Settings2, Database, XCircle, Target, Map, Coins, Globe, Building, ArrowUpRight, Scale, Users, Activity, BookOpen, ChevronLeft, TreeDeciduous, Key } from 'lucide-react';
 import { chatWithVault } from './services/offlineContentService';
 
 enum ViewState {
@@ -15,7 +16,8 @@ enum ViewState {
 
 enum AppMode {
   INVESTOR_PITCH,
-  LIVE_DEMO
+  LIVE_DEMO,
+  LICENSING_MANAGER
 }
 
 enum PitchSubState {
@@ -181,9 +183,9 @@ const App: React.FC = () => {
               <LayoutGrid className="text-white w-5 h-5" />
             </div>
             <h1 className="text-xl font-serif font-bold tracking-tight text-vault-text">
-              Unified<span className={appMode === AppMode.INVESTOR_PITCH ? 'text-indigo-900' : 'text-vault-accent'}>Vault</span> 
+              Unified<span className={appMode === AppMode.INVESTOR_PITCH ? 'text-indigo-900' : appMode === AppMode.LICENSING_MANAGER ? 'text-emerald-700' : 'text-vault-accent'}>Vault</span> 
               <span className="text-sm font-sans font-normal text-vault-muted ml-1">
-                 | {appMode === AppMode.INVESTOR_PITCH ? 'Investor Portal' : 'Live Platform'}
+                 | {appMode === AppMode.INVESTOR_PITCH ? 'Investor Portal' : appMode === AppMode.LICENSING_MANAGER ? 'Licensing Hub' : 'Live Platform'}
               </span>
             </h1>
           </div>
@@ -213,6 +215,24 @@ const App: React.FC = () => {
                 <Layers size={14} className="mr-2" />
                 Live Demo
               </button>
+              <button 
+                onClick={() => { setAppMode(AppMode.LICENSING_MANAGER); }}
+                className={`px-4 py-1.5 rounded-full text-xs font-bold flex items-center transition-all ${
+                  appMode === AppMode.LICENSING_MANAGER 
+                  ? 'bg-emerald-700 text-white shadow-md' 
+                  : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                <Key size={14} className="mr-2" />
+                Licensing
+              </button>
+            </div>
+            
+            <div className="hidden lg:flex items-center px-3 py-1 bg-amber-50 border border-amber-200 rounded-full">
+              <ShieldCheck size={14} className="text-amber-600 mr-2" />
+              <span className="text-[10px] font-bold text-amber-800 uppercase tracking-tighter">
+                Created by Tariq Fahidi
+              </span>
             </div>
             
             <div className="hidden md:flex h-8 w-8 rounded-full bg-slate-200 border border-slate-300 overflow-hidden">
@@ -225,6 +245,13 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
+        {/* =================================================================================
+                                      LICENSING MANAGER VIEW
+           ================================================================================= */}
+        {appMode === AppMode.LICENSING_MANAGER && (
+          <LicensingModule />
+        )}
+
         {/* =================================================================================
                                       INVESTOR PITCH VIEW
            ================================================================================= */}
@@ -987,7 +1014,25 @@ const App: React.FC = () => {
         .animate-slide-up {
           animation: slide-up 0.3s ease-out forwards;
         }
+        @keyframes bounce-subtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+        .animate-bounce-subtle {
+          animation: bounce-subtle 3s ease-in-out infinite;
+        }
       `}</style>
+
+      {/* Floating Credit */}
+      <div className="fixed bottom-6 right-6 z-[100] pointer-events-none">
+        <div className="bg-white/90 backdrop-blur-md border border-vault-border px-4 py-2 rounded-2xl shadow-2xl flex items-center space-x-3 animate-bounce-subtle pointer-events-auto hover:scale-105 transition-transform">
+          <div className="w-8 h-8 rounded-full bg-indigo-900 flex items-center justify-center text-white font-bold text-xs shadow-inner">TF</div>
+          <div>
+            <p className="text-[10px] font-bold text-vault-muted uppercase tracking-widest leading-none">Architected By</p>
+            <p className="text-sm font-serif font-bold text-indigo-950 leading-tight">Tariq Fahidi</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
