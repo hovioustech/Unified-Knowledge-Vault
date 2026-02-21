@@ -55,8 +55,8 @@ export const generateChapterContent = async (
   chapter: Chapter,
   partnerType: PartnerType
 ): Promise<GeneratedContent> => {
-  // Simulate a short network delay for a realistic UI experience
-  await new Promise(resolve => setTimeout(resolve, 800));
+  // Offline mode: Instant response
+  // await new Promise(resolve => setTimeout(resolve, 800));
 
   const t1 = PartnerType.IP_Definition;
   const t2 = PartnerType.Legal_Structuring;
@@ -185,8 +185,8 @@ export const generateChapterContent = async (
 };
 
 export const chatWithVault = async (message: string, currentContext?: string): Promise<string> => {
-  // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 600));
+  // Offline mode: Instant response
+  // await new Promise(resolve => setTimeout(resolve, 600));
   
   const lowerMsg = message.toLowerCase();
 

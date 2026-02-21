@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Domain, Chapter, PartnerType, GeneratedContent } from '../types';
-import { generateChapterContent } from '../services/geminiService';
+import { generateChapterContent } from '../services/offlineContentService';
 import { Loader2, ArrowLeft, Award, BookOpen, AlertCircle, Sparkles, CheckCircle2, Circle, Briefcase, FileText } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
