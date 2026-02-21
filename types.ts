@@ -35,23 +35,3 @@ export interface GeneratedContent {
   certificationCriteria: string[]; // Reused as "Operational Deliverables"
   contentBody: string; // Full essay content
 }
-
-export interface Institution {
-  id: string;
-  name: string;
-  type: 'higher-ed' | 'corporate' | 'gov' | 'trade';
-  contactEmail: string;
-  location: string;
-}
-
-export interface License {
-  id: string;
-  institutionId: string;
-  trackId: string;
-  licenseKey: string;
-  status: 'active' | 'expired' | 'pending';
-  issuedDate: string;
-  expiryDate: string;
-  seatsTotal: number;
-  seatsUsed: number;
-}

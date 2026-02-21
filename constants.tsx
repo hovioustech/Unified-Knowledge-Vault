@@ -1,4 +1,4 @@
-import { Domain, PartnerType, Chapter, Track, Institution, License } from './types';
+import { Domain, PartnerType, Chapter, Track } from './types';
 import { Leaf, Users, Home, Scale, Activity, Brain, Globe, Zap, Database, Briefcase, ShieldCheck, BookOpen, Building2, GraduationCap, Factory, TreeDeciduous, ScrollText, Package, Server, Network, Layers, FileBadge, Workflow, Waypoints, RefreshCw, Binary } from 'lucide-react';
 import React from 'react';
 
@@ -168,46 +168,4 @@ export const PLACEHOLDER_CHAPTERS: Chapter[] = [
   { id: '5', title: 'Technology & Tools', description: 'Software and hardware stack required for implementation.' },
   { id: '6', title: 'Financial Modeling', description: 'Unit economics and ROI analysis.' },
   { id: '7', title: 'Certification Assessment', description: 'Final project and knowledge verification.' },
-];
-
-export const MOCK_INSTITUTIONS: Institution[] = [
-  { id: 'inst1', name: 'Pacific State University', type: 'higher-ed', contactEmail: 'admin@psu.edu', location: 'Oregon, USA' },
-  { id: 'inst2', name: 'Global Tech Corp', type: 'corporate', contactEmail: 'training@gtc.com', location: 'Remote' },
-  { id: 'inst3', name: 'County of Marin', type: 'gov', contactEmail: 'planning@marin.gov', location: 'California, USA' },
-];
-
-export const MOCK_LICENSES: License[] = [
-  { 
-    id: 'lic1', 
-    institutionId: 'inst1', 
-    trackId: 't1', 
-    licenseKey: 'UKV-T1-PSU-9921', 
-    status: 'active', 
-    issuedDate: '2025-01-15', 
-    expiryDate: '2026-01-15', 
-    seatsTotal: 500, 
-    seatsUsed: 342 
-  },
-  { 
-    id: 'lic2', 
-    institutionId: 'inst2', 
-    trackId: 't3', 
-    licenseKey: 'UKV-T3-GTC-4410', 
-    status: 'active', 
-    issuedDate: '2025-02-01', 
-    expiryDate: '2026-02-01', 
-    seatsTotal: 1000, 
-    seatsUsed: 120 
-  },
-  { 
-    id: 'lic3', 
-    institutionId: 'inst3', 
-    trackId: 't5', 
-    licenseKey: 'UKV-T5-MAR-1102', 
-    status: 'expired', 
-    issuedDate: '2024-01-01', 
-    expiryDate: '2025-01-01', 
-    seatsTotal: 50, 
-    seatsUsed: 50 
-  },
 ];
