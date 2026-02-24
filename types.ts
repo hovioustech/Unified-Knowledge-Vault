@@ -1,11 +1,3 @@
-export enum PartnerType {
-  IP_Definition = "Transformation 1: IP Definition",
-  Legal_Structuring = "Transformation 2: Legal Structuring",
-  Product_Packaging = "Transformation 3: Product Packaging",
-  Contractual_Licensing = "Transformation 4: Contractual Licensing",
-  Institutional_Embedding = "Transformation 5: Institutional Embedding"
-}
-
 export interface Track {
   id: string;
   title: string;
@@ -54,4 +46,68 @@ export interface License {
   expiryDate: string;
   seatsTotal: number;
   seatsUsed: number;
+}
+
+export interface User {
+  id: string;
+  institutionId: string;
+  name: string;
+  email: string;
+  role: 'student' | 'instructor' | 'admin';
+}
+
+export interface Question {
+  id: string;
+  type: 'multiple-choice' | 'writing';
+  text: string;
+  options?: string[]; // For multiple choice
+  correctAnswer?: string; // For multiple choice
+  rubric?: string; // For writing
+}
+
+export interface Quiz {
+  id: string;
+  chapterId: string;
+  questions: Question[];
+}
+
+export interface Exam {
+  id: string;
+  trackId: string;
+  questions: Question[];
+}
+
+export interface Submission {
+  id: string;
+  userId: string;
+  assessmentId: string; // Quiz or Exam ID
+  answers: Record<string, string>; // Question ID -> Answer
+  score?: number;
+  feedback?: string;
+  gradedBy: 'ai' | 'instructor' | 'pending';
+  timestamp: string;
+}
+
+export interface Progress {
+  userId: string;
+  trackId: string;
+  completedChapterIds: string[];
+  weakPoints: string[]; // Topics to generate remedial content for
+}
+
+export interface RemedialContent {
+  id: string;
+  userId: string;
+  chapterId: string;
+  content: string;
+  topic: string;
+}
+
+export interface Report {
+  id: string;
+  userId: string;
+  examId: string;
+  score: number;
+  aiAnalysis: string;
+  timestamp: string;
 }
